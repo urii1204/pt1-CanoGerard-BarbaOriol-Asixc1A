@@ -4,6 +4,30 @@
     <meta charset="UTF-8">
     <title>Noms Aleatoris</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+      h1 {
+        text-align: center;
+      }
+
+      button {
+        display: block;
+        margin: auto;
+        padding: 10px 20px;
+        font-size: 20px;
+        border: none;
+        background-color: #3498db;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      p {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 50px;
+      }
+    </style>
   </head>
   <body>
     <h1>Noms Aleatoris</h1>
@@ -13,30 +37,6 @@
   </body>
 </html>
 
-<style>
-  h1 {
-    text-align: center;
-  }
-
-  button {
-    display: block;
-    margin: auto;
-    padding: 10px 20px;
-    font-size: 20px;
-    border: none;
-    background-color: #3498db;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  p {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 50px;
-  }
-</style>
 
 <script>
 const btn = document.getElementById("btn");
@@ -50,7 +50,7 @@ btn.addEventListener("click", () => {
       const index = Math.floor(Math.random() * noms.length);
       resultat.textContent = noms[index];
     })
-    .catch(error => { // Manejar errores si ocurren
+    .catch(error => {
       console.error("Error en carregar el fitxer de noms:", error);
       resultat.textContent = "Error en carregar el fitxer de noms";
     });
