@@ -1,20 +1,30 @@
-Albert
-Aina
-Anna
-Carla
-Cristina
-David
-Gerard
-Javier
-Joan
-Jordi
-Julia
-Julia
-Laura
-Marc
-Marina
-Marta
-Nuria
-Oriol
-Pau
-Pol
+Aquí tienes la lista de nombres sin apellidos:
+
+- Juan
+- Mauro
+- Onur
+- Oriol
+- Ruben
+- Gerard
+- Juan
+- Claudia
+- Samir
+- Gerardo
+- Younes
+- Soulaimane
+- Hector
+- Joel
+- Mario
+- Jefrey
+- Kevin
+- Denis
+- Erin
+- David
+- Isaac
+- Trishan
+- Victor
+- Alfredo
+- Daniel
+- Bogdan
+- Enric
+- Joan
