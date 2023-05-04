@@ -39,14 +39,41 @@
   margin: auto;
 }
 #alarm-timer {
+
   color: orange;
   font-size: 100px;
-  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+
 
 }
 @font-face {
   font-family: dsDigital;
-  src: url();
+  src: url(ds-digital/DS-DIGI.TTF);
+}
+#alarm-hour {
+  height: 120px;
+  min-width: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: dimgrey;
+  border-radius: 12px;
+    opacity: 0.6;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+#alarm-hour span {
+  width: 100%;
+  text-align: center;
+  font-size: 55px;
+  font-weight: 600;
+
+}
+
+.num {
+  font-size: 50px;
+  border-right: 2px solid rgba(0,0,0,0.2);
+  border-left: 2px solid rgba(0,0,0,0.2);
 }
 </style>
     <script>
@@ -61,6 +88,9 @@
       const randomName = names[randomIndex];
       resultElement.textContent = randomName;
 });
+
+
+
 
     </script>
 
@@ -81,6 +111,17 @@
         Haurà de tenir efectes de so, quan acabi la tasca haurà de sonar un so. Aquest so estaria bé que es pogués configurar. És a dir, triar d’entre diverses opcions.-->
     <div id="alarm-container">
     <p id="alarm-timer">00:00</p>
+      <div id="alarm-hour">
+        <span>-</span>
+        <span class="num">0</span>
+        <span>+</span>
+      </div>
+      <div id="alarm-minutes">
+        <span>-</span>
+        <span class="num">0</span>
+        <span>+</span>
+      </div>
+
     </div>
   </body>
 </html>
