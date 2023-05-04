@@ -1,64 +1,61 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Ruleta de noms</title>
+    <title>Noms Aleatoris</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-      h1 {
-  font-size: 36px;
-  text-align: center;
-}
-
-#spin-button {
-  font-size: 24px;
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#spin-button:hover {
-  background-color: #0062cc;
-}
-
-#result {
-  font-size: 48px;
-  text-align: center;
-  margin-top: 24px;
-}
-</style>
-    <script>
-      const names = ['Ana', 'Berta', 'Carla', 'David', 'Erica', 'Ferran', 'Gina', 'Hector',
-        'Ivan', 'Jordi', 'Karla', 'Luis', 'Marta', 'Nuria', 'Oscar', 'Pablo', 'Quim', 'Rosa',
-        'Sonia', 'Toni', 'Uri', 'Vero', 'Xavi', 'Yolanda', 'Zoe'];
-      const spinButton = document.getElementById('spin-button');
-      const resultElement = document.getElementById('result');
-
-    spinButton.addEventListener('click', () => {
-      const randomIndex = Math.floor(Math.random() * names.length);
-      const randomName = names[randomIndex];
-      resultElement.textContent = randomName;
-});
-
-    </script>
-
   </head>
   <body>
-    <h1>Ruleta de noms</h1>
-    <button id="spin-button">Girar</button>
-    <p id="result"></p>
+    <h1>Noms Aleatoris</h1>
+    <button id="btn">Triar un nom</button>
+    <p id="resultat"></p>
     <script src="script.js"></script>
   </body>
 </html>
 
+<style>
+  h1 {
+    text-align: center;
+  }
 
+  button {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
+  p {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 50px;
+  }
+</style>
 
+<script>
+  const btn = document.getElementById("btn");
+  const resultat = document.getElementById("resultat");
+
+  btn.addEventListener("click", () => {
+    fetch("noms.txt")
+      .then(response => response.text())
+      .then(text => {
+        const noms = text.trim().split("\n");
+        const index = Math.floor(Math.random() * noms.length);
+        resultat.textContent = noms[index];
+      })
+      .catch(error => {
+        console.error("Error en carregar el fitxer de noms:", error);
+        resultat.textContent = "Error en carregar el fitxer de noms";
+      });
+  });
+</script>
 
 
 
