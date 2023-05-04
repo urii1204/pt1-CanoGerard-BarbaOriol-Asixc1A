@@ -1,0 +1,64 @@
+Aquí tens un exemple bàsic d'una ruleta de noms en JavaScript:
+
+HTML:
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Ruleta de noms</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Ruleta de noms</h1>
+    <button id="spin-button">Girar</button>
+    <p id="result"></p>
+    <script src="script.js"></script>
+  </body>
+</html>
+```
+
+CSS:
+
+```
+h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+#spin-button {
+  font-size: 24px;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#spin-button:hover {
+  background-color: #0062cc;
+}
+
+#result {
+  font-size: 48px;
+  text-align: center;
+  margin-top: 24px;
+}
+```
+
+JavaScript:
+
+```
+const names = ['Ana', 'Berta', 'Carla', 'David', 'Erica', 'Ferran', 'Gina', 'Hector', 'Ivan', 'Jordi', 'Karla', 'Luis', 'Marta', 'Nuria', 'Oscar', 'Pablo', 'Quim', 'Rosa', 'Sonia', 'Toni', 'Uri', 'Vero', 'Xavi', 'Yolanda', 'Zoe'];
+
+const spinButton = document.getElementById('spin-button');
+const resultElement = document.getElementById('result');
+
+spinButton.addEventListener('click', () => {
+  const randomIndex = Math.floor(Math.random() * names.length);
+  const randomName = names[randomIndex];
+  resultElement.textContent = randomName;
+});
