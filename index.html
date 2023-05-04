@@ -39,22 +39,22 @@
 </style>
 
 <script>
-  const btn = document.getElementById("btn");
-  const resultat = document.getElementById("resultat");
+const btn = document.getElementById("btn");
+const resultat = document.getElementById("resultat");
 
-  btn.addEventListener("click", () => {
-    fetch("noms.txt")
-      .then(response => response.text())
-      .then(text => {
-        const noms = text.trim().split("\n");
-        const index = Math.floor(Math.random() * noms.length);
-        resultat.textContent = noms[index];
-      })
-      .catch(error => {
-        console.error("Error en carregar el fitxer de noms:", error);
-        resultat.textContent = "Error en carregar el fitxer de noms";
-      });
-  });
+btn.addEventListener("click", () => {
+  fetch("noms.txt")
+    .then(response => response.text())
+    .then(text => {
+      const noms = text.trim().split("\n");
+      const index = Math.floor(Math.random() * noms.length);
+      resultat.textContent = noms[index];
+    })
+    .catch(error => { // Manejar errores si ocurren
+      console.error("Error en carregar el fitxer de noms:", error);
+      resultat.textContent = "Error en carregar el fitxer de noms";
+    });
+});
 </script>
 
 
