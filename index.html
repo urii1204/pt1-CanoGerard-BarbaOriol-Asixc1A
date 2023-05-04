@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Noms Aleatoris</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
       h1 {
         text-align: center;
@@ -32,31 +33,32 @@
   <body>
     <h1>Noms Aleatoris</h1>
     <button id="btn">Triar un nom</button>
-    <p id="resultat"></p>
+    <p id="resultat" class="animate__animated animate__bounceIn"></p>
     <script src="script.js"></script>
+    <script>
+      const btn = document.getElementById("btn");
+      const resultat = document.getElementById("resultat");
+
+      btn.addEventListener("click", () => {
+        fetch("noms.txt")
+          .then(response => response.text())
+          .then(text => {
+            const noms = text.trim().split("\n");
+            const index = Math.floor(Math.random() * noms.length);
+            resultat.classList.remove('animate__bounceIn');
+            setTimeout(() => {
+              resultat.textContent = noms[index];
+              resultat.classList.add('animate__bounceIn');
+              const audio = new Audio('008863841_prev.mp3');
+              audio.play();
+            }, 50);
+          })
+          .catch(error => {
+            console.error("Error en carregar el fitxer de noms:", error);
+            resultat.textContent = "Error en carregar el fitxer de noms";
+          });
+      });
+    </script>
+
   </body>
 </html>
-
-
-<script>
-const btn = document.getElementById("btn");
-const resultat = document.getElementById("resultat");
-
-btn.addEventListener("click", () => {
-  fetch("noms.txt")
-    .then(response => response.text())
-    .then(text => {
-      const noms = text.trim().split("\n");
-      const index = Math.floor(Math.random() * noms.length);
-      resultat.textContent = noms[index];
-    })
-    .catch(error => {
-      console.error("Error en carregar el fitxer de noms:", error);
-      resultat.textContent = "Error en carregar el fitxer de noms";
-    });
-});
-</script>
-
-
-
-
