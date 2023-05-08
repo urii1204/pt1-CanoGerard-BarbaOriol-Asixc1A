@@ -5,32 +5,9 @@
     <meta charset="UTF-8">
     <title>Ruleta de noms</title>
     <link rel="stylesheet" href="style.css">
+
     <style>
-      h1 {
-  font-size: 36px;
-  text-align: center;
-}
 
-#spin-button {
-  font-size: 24px;
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#spin-button:hover {
-  background-color: #0062cc;
-}
-
-#result {
-  font-size: 48px;
-  text-align: center;
-  margin-top: 24px;
-}
 #alarm-container {
   font-family: dsDigital;
   height: 400px;
@@ -42,8 +19,9 @@
 
   color: orange;
   font-size: 100px;
-  margin-top: 50px;
+  margin: auto;
   text-align: center;
+
 
 
 }
@@ -52,20 +30,48 @@
   src: url(ds-digital/DS-DIGI.TTF);
 }
 #alarm-hour {
-  height: 120px;
-  min-width: 380px;
+  position: relative;
+    height: 50px;
+  width: 120px;
+  min-width: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: dimgrey;
+  background-color: gray;
   border-radius: 12px;
     opacity: 0.6;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  top: 35%;
+  left:35%;
 }
 #alarm-hour span {
   width: 100%;
   text-align: center;
-  font-size: 55px;
+  font-size: 30px;
+  font-weight: 600;
+
+}
+
+#alarm-minutes {
+  position: relative;
+  margin-top: 15px;
+    height: 50px;
+  width: 120px;
+  min-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: grey;
+  border-radius: 12px;
+    opacity: 0.6;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    top: 35%;
+  left:35%;
+}
+#alarm-minutes span {
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
   font-weight: 600;
 
 }
@@ -77,30 +83,21 @@
 }
 </style>
     <script>
-      const names = ['Ana', 'Berta', 'Carla', 'David', 'Erica', 'Ferran', 'Gina', 'Hector',
-        'Ivan', 'Jordi', 'Karla', 'Luis', 'Marta', 'Nuria', 'Oscar', 'Pablo', 'Quim', 'Rosa',
-        'Sonia', 'Toni', 'Uri', 'Vero', 'Xavi', 'Yolanda', 'Zoe'];
-      const spinButton = document.getElementById('spin-button');
-      const resultElement = document.getElementById('result');
 
-    spinButton.addEventListener('click', () => {
-      const randomIndex = Math.floor(Math.random() * names.length);
-      const randomName = names[randomIndex];
-      resultElement.textContent = randomName;
-});
-
-
-
+    const plus = document.querySelector(".plus-hour"),
+            minus = document.querySelector(".minus-hour"),
+            num = document.querySelector(".num-hour");
+    let a = 1;
+    plus.addEventListener("click", ()=> {
+      a++;
+      console.log(a);
+    });
 
     </script>
 
   </head>
   <body>
 
-    <h1>Ruleta de noms</h1>
-    <button id="spin-button">Girar</button>
-    <p id="result"></p>
-    <h1>Alarma</h1>
     <!--Aquesta eina serveix per establir un temporitzador per marcar la finalització d’una tasca.
 
         Hi haurà 2 formes d’establir el temps.
@@ -112,14 +109,14 @@
     <div id="alarm-container">
     <p id="alarm-timer">00:00</p>
       <div id="alarm-hour">
-        <span>-</span>
-        <span class="num">0</span>
-        <span>+</span>
+        <span class="minus-hour">-</span>
+        <span class="num-hour">0</span>
+        <span class="plus-hour">+</span>
       </div>
       <div id="alarm-minutes">
-        <span>-</span>
-        <span class="num">0</span>
-        <span>+</span>
+        <span class="minus-hour">-</span>
+        <span class="num-hour">0</span>
+        <span class="plus-hour">+</span>
       </div>
 
 
