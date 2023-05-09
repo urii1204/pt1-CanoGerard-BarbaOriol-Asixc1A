@@ -3,8 +3,15 @@
             num = document.querySelector(".num-hour");
     let a = 1;
     plus.addEventListener("click", ()=>{
-      a++;
-      console.log(a);
+        if (a < 24){
+            a++;
+            if (a<10){
+                a = "0"+a;
+            }
+        num.innerText = a;
+
+        }
+
     });
 
 
