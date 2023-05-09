@@ -5,9 +5,8 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-
-    <style>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Document</title><style>
 
 #alarm-container {
   font-family: dsDigital;
@@ -15,15 +14,14 @@
   width: 400px;
   background-color: black;
   margin: auto;
+    border-radius: 10px;
 }
 #alarm-timer {
-
+    position: relative;
   color: orange;
   font-size: 100px;
-  margin: auto;
+  margin-top: 5px;
   text-align: center;
-
-
 
 }
 @font-face {
@@ -40,22 +38,24 @@
   justify-content: center;
   background-color: gray;
   border-radius: 12px;
-    opacity: 0.6;
+    border: 4px solid orange;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-  top: 35%;
-  left:35%;
+  top: 25%;
+  left:33%;
 }
 #alarm-hour span {
   width: 100%;
   text-align: center;
   font-size: 30px;
   font-weight: 600;
+    cursor: pointer;
+
 
 }
 
 #alarm-minutes {
   position: relative;
-  margin-top: 15px;
+  margin-top: 10px;
     height: 50px;
   width: 120px;
   min-width: 50px;
@@ -64,27 +64,54 @@
   justify-content: center;
   background-color: grey;
   border-radius: 12px;
-    opacity: 0.6;
+    border: 4px solid orange;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-    top: 35%;
-  left:35%;
+    top: 25%;
+  left:33%;
 }
 #alarm-minutes span {
   width: 100%;
   text-align: center;
   font-size: 30px;
   font-weight: 600;
+    cursor: pointer;
 
 }
 
-.num {
-  font-size: 50px;
-  border-right: 2px solid rgba(0,0,0,0.2);
-  border-left: 2px solid rgba(0,0,0,0.2);
+#start-container {
+    top: 25%;
+    left:40%;
+    margin-top: 15px;
+    position: relative;
+    height: 40px;
+    width: 70px;
+    background-color: gray;
+    border: 2px solid orange;
+    border-radius: 20px;
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
 }
+#start-container:hover {
+    opacity: 80%;
+
+}
+#real-time {
+    position: relative;
+  font-size: 40px;
+  color: white;
+    height: 50px;
+      top: 25%;
+
+
+}
+
 </style>
 </head>
-<body>
+<body onload="makeReloj()">
+
 <!--Aquesta eina serveix per establir un temporitzador per marcar la finalització d’una tasca.
 
         Hi haurà 2 formes d’establir el temps.
@@ -94,17 +121,23 @@
         Haurà de mostrar, també, l’hora actual, fent servir una font digital
         Haurà de tenir efectes de so, quan acabi la tasca haurà de sonar un so. Aquest so estaria bé que es pogués configurar. És a dir, triar d’entre diverses opcions.-->
     <div id="alarm-container">
-    <p id="alarm-timer">00:00</p>
+        <div id="div_reloj">
+      <p align="center" id="real-time"></p>
+  </div>
+    <p align="center" id="alarm-timer">00:00</p>
       <div id="alarm-hour">
         <span class="minus-hour">-</span>
         <span class="num-hour">0</span>
         <span class="plus-hour">+</span>
       </div>
       <div id="alarm-minutes">
-        <span class="minus-hour">-</span>
-        <span class="num-hour">0</span>
-        <span class="plus-hour">+</span>
+        <span class="minus-minute">-</span>
+        <span class="num-minute">0</span>
+        <span class="plus-minute">+</span>
       </div>
+        <div id="start-container" onclick="start_timer()">
+            <i class="material-icons dp48">check</i>
+        </div>
     </div>
     <script src="app.js"></script>
 </body>
