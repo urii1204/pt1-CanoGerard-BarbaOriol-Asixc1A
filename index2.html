@@ -1,10 +1,11 @@
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Ruleta de noms</title>
-    <link rel="stylesheet" href="style.css">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 
     <style>
 
@@ -82,23 +83,9 @@
   border-left: 2px solid rgba(0,0,0,0.2);
 }
 </style>
-    <script>
-
-    const plus = document.querySelector(".plus-hour"),
-            minus = document.querySelector(".minus-hour"),
-            num = document.querySelector(".num-hour");
-    let a = 1;
-    plus.addEventListener("click", ()=> {
-      a++;
-      console.log(a);
-    });
-
-    </script>
-
-  </head>
-  <body>
-
-    <!--Aquesta eina serveix per establir un temporitzador per marcar la finalització d’una tasca.
+</head>
+<body>
+<!--Aquesta eina serveix per establir un temporitzador per marcar la finalització d’una tasca.
 
         Hi haurà 2 formes d’establir el temps.
         Indicant l’hora exacte de finalització: 10:44 am
@@ -118,11 +105,12 @@
         <span class="num-hour">0</span>
         <span class="plus-hour">+</span>
       </div>
-
-
     </div>
-  </body>
+    <script src="app.js"></script>
+</body>
 </html>
+
+
 
 
 
