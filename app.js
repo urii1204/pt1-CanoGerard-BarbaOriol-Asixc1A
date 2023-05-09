@@ -48,4 +48,23 @@
 
     });
 
+function start_timer(){
+    document.getElementById("alarm-timer").innerHTML = a+":"+b;
+}
 
+ function makeReloj() {
+     hora_Actual = new Date()
+     hora = hora_Actual.getHours()
+     minutos = hora_Actual.getMinutes()
+     segundos = hora_Actual.getSeconds()
+
+     if (hora < 10) hora = "0" + hora
+     if (minutos < 10) minutos = "0" + minutos
+     if (segundos < 10) segundos = "0" + segundos
+
+     hora_imprimible = hora + " : " + minutos + " : " + segundos
+     document.getElementById("real-time").innerHTML = hora_imprimible
+
+     setTimeout("makeReloj()", 1000)
+
+ }
