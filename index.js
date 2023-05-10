@@ -60,6 +60,7 @@ function drawRouletteWheel() {
     ctx.lineWidth = 5;
 
     ctx.font = 'bold 20px Montserrat, Arial';
+    ctx.textBaseline = 'middle'; // Alinear verticalmente en el centro
 
     for(var i = 0; i < options.length; i++) {
       var angle = startAngle + i * arc;
@@ -77,12 +78,12 @@ function drawRouletteWheel() {
       ctx.fill();
 
       ctx.save();
-      ctx.fillStyle = "black";
+      ctx.fillStyle = "white"; // blanco
       ctx.translate(250 + Math.cos(angle + arc / 2) * textRadius,
                     250 + Math.sin(angle + arc / 2) * textRadius);
       ctx.rotate(angle + arc / 2 + Math.PI / 2);
       var text = options[i];
-      ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
+      ctx.fillText(text, 0, 0);
       ctx.restore();
     }
 
@@ -98,48 +99,46 @@ function drawRouletteWheel() {
     ctx.lineTo(250 - 4, 250 - (outsideRadius - 5));
     ctx.lineTo(250 - 4, 250 - (outsideRadius + 5));
     ctx.fill();
-  }
+}
 }
 
 function spin() {
-  spinAngleStart = Math.random() * 10 + 10;
-  spinTime = 0;
-  spinTimeTotal = Math.random() * 3 + 4 * 1000;
+spinAngleStart = Math.random() * 10 + 10;
+spinTime = 0;
+spinTimeTotal = Math.random() * 3 + 4 * 1000;
 
-  var soundSpinning = document.getElementById("sound-spinning");
-  soundSpinning.play();
+var soundSpinning = document.getElementById("sound-spinning");
+soundSpinning.play();
 
-  rotateWheel();
+rotateWheel();
 }
 
 function rotateWheel() {
-  spinTime += 30;
-  if(spinTime >= spinTimeTotal) {
-    stopRotateWheel();
-    return;
-  }
-  var spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
-  startAngle += (spinAngle * Math.PI / 180);
-  drawRouletteWheel();
-  spinTimeout = setTimeout('rotateWheel()', 30);
+spinTime += 30;
+if(spinTime >= spinTimeTotal) {
+stopRotateWheel();
+return;
+}
+var spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
+startAngle += (spinAngle * Math.PI / 180);
+drawRouletteWheel();
+spinTimeout = setTimeout('rotateWheel()', 30);
 }
 
 function stopRotateWheel() {
-  clearTimeout(spinTimeout);
-  var degrees = startAngle * 180 / Math.PI + 90;
-  var arcd = arc * 180 / Math.PI;
-  var index = Math.floor((360 - degrees % 360) / arcd);
-  ctx.save();
-  ctx.font = 'bold 30px Helvetica, Arial';
-  var text = options[index]
-  ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
-  ctx.restore();
+clearTimeout(spinTimeout);
+var degrees = startAngle * 180 / Math.PI + 90;
+var arcd = arc * 180 / Math.PI;
+var index = Math.floor((360 - degrees % 360) / arcd);
+ctx.save();
+ctx.font = 'bold 30px Helvetica, Arial';
+var text = options[index];
+ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
+ctx.restore();
 
-  var soundEnd = document.getElementById("sound-end");
-  soundEnd.play();
+var soundEnd = document.getElementById("sound-end");
+soundEnd.play();
 }
-
-
 function easeOut(t, b, c, d) {
   var ts = (t/=d)*t;
   var tc = ts*t;
