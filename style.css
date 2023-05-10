@@ -1,3 +1,13 @@
-#spin {
-  margin: 0 auto;
+@import url(https://fonts.googleapis.com/css?family=Montserrat:500);
+body{
+  font-family: 'Montserrat', sans-serif;
+
 }
+input{
+  margin:5%;
+}
+.btn{
+  width: 200px;
+  height:100px;
+  font-size: 25px;
+  ;}
