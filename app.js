@@ -1,114 +1,121 @@
-    let plus = document.querySelector(".plus-hour"),
-            minus = document.querySelector(".minus-hour"),
-            num = document.querySelector(".num-hour");
-    let a = 0;
-    let plus_min = document.querySelector(".plus-minute"),
-            minus_min = document.querySelector(".minus-minute"),
-            num_min = document.querySelector(".num-minute");
-    let b = 0;
 
-    plus.addEventListener("click", ()=>{
-        if (a < 23 && a >= 0){
-            a++;
-            if (a<10){
-                a = "0"+a;
-            }
-        num.innerText = a;
+// variables
 
-        }
-    });
-        minus.addEventListener("click", ()=>{
-        if (a <= 23 && a > 0){
-            a--;
-            if (a<10){
-                a = "0"+a;
-            }
-        num.innerText = a;
-        }
+let alarmListArr = [];
+const selectMenu = document.querySelectorAll("select");
+const setAlarmBtn = document.querySelector("#btn-setAlarm");
+let alarmCount = 0;
+let alarmTime;
+let ring = new Audio("audio/Alarm-ringtone.mp3");
 
-    });
-    plus_min.addEventListener("click", ()=>{
-        if (b < 59 && b >= 0){
-            b++;
-            if (b<10){
-                b = "0"+b;
-            }
-        num_min.innerText = b;
-        }
-    });
-        minus_min.addEventListener("click", ()=>{
-        if (b <= 59 && b > 0){
-            b--;
-            if (b<10){
-                b = "0"+b;
-            }
-        num_min.innerText = b;
+
+// Script for Time and Date
+
+
+function updateClock(){
+    var now = new Date();
+    var dname = now.getDay(),
+        mo = now.getMonth(),
+        dnum = now.getDate(),
+        yr = now.getFullYear(),
+        hou = now.getHours(),
+        min = now.getMinutes(),
+        sec = now.getSeconds(),
+        pe = "AM";
+
+        if(hou==0){
+            hou = 12;
         }
 
-    });
+        if(hou>12){
+            hou -=12;
+            pe = "PM";
+        }
+
+        Number.prototype.pad = function(digits){
+            for(var n = this.toString(); n.length<digits; n=0+n);
+            return n;
+        }
+
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var week = ["Sunday", "Monday", "Tusday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        var ids =["dayName", "month", "dayNum", "year", "hour", "minutes", "seconds", "period"];
+        var values = [week[dname], months[mo], dnum.pad(2),yr,hou.pad(2),min.pad(2),sec.pad(2),pe];
+
+        for(var i=0; i<ids.length;i++){
+            document.getElementById(ids[i]).firstChild.nodeValue = values[i];
+        }
+
+        for(let i=0; i<alarmListArr.length;i++){
+            if(alarmListArr[i]==`${hou.pad(2)}:${min.pad(2)}:${sec.pad(2)} ${pe}`){
+                console.log("Alarm ringing...");
+                ring.load();
+                ring.play();
+                document.querySelector("#stopAlarm").style.visibility= "visible";
+            }
+        }
+}
+
+function initClock() {
+    updateClock();
+    window.setInterval("updateClock()",1000);
+}
 
 
- function makeReloj() {
-     hora_Actual = new Date()
-     hora = hora_Actual.getHours()
-     minutos = hora_Actual.getMinutes()
-     segundos = hora_Actual.getSeconds()
+//Set Seccion Alarma
 
-     if (hora < 10) hora = "0" + hora
-     if (minutos < 10) minutos = "0" + minutos
-     if (segundos < 10) segundos = "0" + segundos
+for(let i=12; i>0;i--){
+    i=i<10 ? "0"+i :i;
+    let option = `<option value="${i}">${i}</option>`;
+    selectMenu[0].firstElementChild.insertAdjacentHTML("afterend", option);
+}
 
-     hora_imprimible = hora + " : " + minutos + " : " + segundos
-     document.getElementById("real-time").innerHTML = hora_imprimible
+for(let i=59; i>=0;i--){
+    i=i<10 ? "0"+i :i;
+    let option = `<option value="${i}">${i}</option>`;
+    selectMenu[1].firstElementChild.insertAdjacentHTML("afterend", option);
+}
 
-     setTimeout("makeReloj()", 1000)
+for(let i=2; i>0;i--){
+    let ampm = i== 1? "AM":"PM";
+    let option = `<option value="${ampm}">${ampm}</option>`;
+    selectMenu[2].firstElementChild.insertAdjacentHTML("afterend", option);
+}
 
- }
+//Sñade una alarma
 
- // Ejercicio 1087: Calcular la cantidad de horas que hay entre dos fechas dentro de una función.
+function setAlarm(){
+    document.querySelector("#alarm-h3").innerText = "Alarmas";
+    let time = `${selectMenu[0].value}:${selectMenu[1].value}:00 ${selectMenu[2].value}`;
+    if(time.includes("setHour") || time.includes("setMinute") || time.includes("AM/PM")){
+        alert("Please, Select Valide Input");
+    }else{
+        alarmCount++;
+        document.querySelector(".alarmList").innerHTML += `
+        <div class="alarmLog" id="alarm${alarmCount}">
+            <span id="span${alarmCount}">${time}</span>
+            <button class="btn-delete" id="${alarmCount}" onClick="deleteAlarm(this.id)">Delete</button>
+        </div>`;
 
-function calcularDiferenciaHoras(fecha1, fecha2) {
-    if (!(fecha1 instanceof Date) || !(fecha2 instanceof Date)) {
-        throw TypeError('Ambos argumentos deben ser objetos de tipo fecha (Date).');
+        alarmTime = `${selectMenu[0].value}:${selectMenu[1].value}:00 ${selectMenu[2].value}`;
+        alarmListArr.push(alarmTime);
+        console.log(document.querySelector(".btn-delete").value);
     }
 
-    let diferencia = (fecha2.getTime() - fecha1.getTime()) / 1000;
-    diferencia /= (60 * 60);
-
-    return Math.abs(Math.round(diferencia));
 }
 
-console.log(new Date());
+setAlarmBtn.addEventListener("click",setAlarm);
 
-console.log();
+//Borrar Alarma
 
-try {
-    console.log(calcularDiferenciaHoras(new Date(), new Date(new Date().setDate(new Date().getDate() + 1))));
-} catch (e) {
-    console.log(`Error: ${e.message}`);
+function deleteAlarm(click_id){
+    var element = document.getElementById("alarm"+click_id);
+    var deleteIndex = alarmListArr.indexOf(document.querySelector("#span"+click_id).innerText);
+    alarmListArr.splice(deleteIndex,1);
+    element.remove();
 }
 
-console.log();
-
-try {
-    console.log(calcularDiferenciaHoras(new Date(2023, 1, 1), new Date(2023, 1, 2))); // 24
-} catch (e) {
-    console.log(`Error: ${e.message}`);
-}
-
-
-
-console.log();
-
-try {
-    console.log(calcularDiferenciaHoras(42, new Date(2023, 1, 2))); // Error
-} catch (e) {
-    console.log(`Error: ${e.message}`);
-}
-
- function start_timer(){
-    var let1 = Date("2023","05","20",hora,minutos,segundos)
-     var let2 = new Date("2023","05","20",a,b,0)
-    var result = calcularDiferenciaHoras(let1,let2)
-    document.getElementById("alarm-timer").innerHTML = result;
+function stopAlarm(){
+    ring.pause();
+    document.querySelector("#stopAlarm").style.visibility= "hidden";
 }
