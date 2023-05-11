@@ -59,8 +59,8 @@ function drawRouletteWheel() {
     ctx.strokeStyle = "black";
     ctx.lineWidth = 5;
 
-    ctx.font = 'bold 20px Montserrat, Arial';
-    ctx.textBaseline = 'middle'; // Alinear verticalmente en el centro
+    ctx.font = 'bold 12px Montserrat, Arial';
+    ctx.textBaseline = 'middle';
 
     for(var i = 0; i < options.length; i++) {
       var angle = startAngle + i * arc;
@@ -83,7 +83,14 @@ function drawRouletteWheel() {
                     250 + Math.sin(angle + arc / 2) * textRadius);
       ctx.rotate(angle + arc / 2 + Math.PI / 2);
       var text = options[i];
+
+      // Mostrar nombres lateralmente
+      ctx.save();
+      ctx.translate(0, -10); // Ajuste para mostrar el texto lateralmente
+      ctx.rotate(Math.PI / 2); // Rotar el texto 90 grados
       ctx.fillText(text, 0, 0);
+      ctx.restore();
+
       ctx.restore();
     }
 
@@ -99,9 +106,8 @@ function drawRouletteWheel() {
     ctx.lineTo(250 - 4, 250 - (outsideRadius - 5));
     ctx.lineTo(250 - 4, 250 - (outsideRadius + 5));
     ctx.fill();
+  }
 }
-}
-
 function spin() {
 spinAngleStart = Math.random() * 10 + 10;
 spinTime = 0;
