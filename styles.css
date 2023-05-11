@@ -5,11 +5,6 @@
 
 body{
 
-
-    background: linear-gradient(135deg, #ff000080 50%, transparent 0),linear-gradient(-135deg, #ff000080 50%, transparent 0);
-        background-size: 1em 1em;
-        background-color: #000000;
-        backdrop-filter: blur(4px);
     overflow: scroll;
     position: relative;
     height: 100vh;
@@ -17,6 +12,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #ffffff;
 }
 
 ::-webkit-scrollbar{
@@ -31,7 +27,7 @@ body{
 
 .datetime{
     color: #fff;
-    background: #4b0000;
+    background: #800000;
     font-family: "Segoe UI", sans-serif;
     width: 340px;
     padding: 15px 10px;
@@ -40,9 +36,8 @@ body{
 }
 
 .datetime:hover{
-    background: #800000;
+    background: #4b0000;
     box-shadow: 0 0 30px #800000;
-    border-radius: 5px;
 }
 
 .date{
@@ -61,7 +56,7 @@ body{
 
 .time span:not(:last-child){
     position: relative;
-    max-width: 0 6px;
+    max-width: 0px 6px;
     font-weight: 600;
     text-align: center;
 }
@@ -82,9 +77,18 @@ hr{
 }
 
 .setAlarm{
+
     display: flex;
     justify-content: space-around;
     border-radius: 10px;
+}
+.boxAlarm {
+
+    width: auto;
+    height: auto;
+    margin: auto;
+
+    background-color: maroon;
 }
 
 .column select{
@@ -132,7 +136,7 @@ h3{
 
 .alarmList{
     color: #fff;
-    margin: 14px auto;
+    margin-top: 14px auto;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -161,8 +165,7 @@ body{
   width: 100px;
   height:50px;
     bottom: 65%;
-    left: 30%;
-
+    left: 25%;
   font-size: 15px;
     background-color: #b20000;
     border: 3px solid #4b0000;

@@ -96,7 +96,7 @@ function drawRouletteWheel() {
     }
 
     //Flecha
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "red";
     ctx.beginPath();
     ctx.moveTo(250 - 4, 250 - (outsideRadius + 5));
     ctx.lineTo(250 + 4, 250 - (outsideRadius + 5));
