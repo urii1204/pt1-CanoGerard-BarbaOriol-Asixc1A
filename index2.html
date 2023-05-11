@@ -12,8 +12,13 @@
 </head>
 <body onload="initClock()">
 
-    <div class="alarm">
 
+<input type="button" value="Dale Click" style="float:left;" id='spin' class="btn btn-primary"/>
+<canvas id="canvas" width="500" height="500"></canvas>
+<audio id="sound-end" src="audio/008863841_prev.mp3"></audio>
+<audio id="sound-spinning" src="audio/006150824_prev.mp3"></audio>
+
+    <div class="alarm">
         <div class="datetime">
             <div class="date">
                 <span id="dayName">Dia</span>,
@@ -29,7 +34,6 @@
             </div>
             <button id="stopAlarm" onclick="stopAlarm()">Parar</button>
         </div>
-
         <hr>
 
         <div class="setAlarm">
@@ -39,42 +43,24 @@
                     <option value="setHour" selected hidden>Horas</option>
                 </select>
             </div>
-
             <div class="column">
                 <select>
                     <option value="setMinute" selected hidden>Minutos</option>
 
                 </select>
             </div>
-
             <div class="column">
                 <select>
                     <option value="AM/PM" selected hidden>AM/PM</option>
                 </select>
             </div>
-
             <button id="btn-setAlarm" type="submit">Añadir</button>
-
         </div>
-
         <hr>
-
         <h3 id="alarm-h3"></h3>
-
         <div class="alarmList">
-
-
         </div>
-
-
     </div>
-
-
-
-
-
-
-    <!-- External Javascript File -->
     <script src="app.js"></script>
 </body>
 </html>
