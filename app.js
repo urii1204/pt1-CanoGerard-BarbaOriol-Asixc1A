@@ -1,4 +1,22 @@
 
+function changeColor(){
+    // get the element whose class you want to modify
+const myElement = document.getElementById('sun');
+const backrg = document.getElementById("body-tag")
+if (myElement.classList.contains('gg-sun')) {
+    myElement.classList.remove('gg-sun');
+    myElement.classList.add('gg-moon');
+    backrg.style.backgroundColor = "#424242"
+}
+else if ((myElement.classList.contains('gg-moon'))) {
+    myElement.classList.remove('gg-moon');
+    myElement.classList.add('gg-sun');
+        backrg.style.backgroundColor = "white"
+
+}
+
+}
+
 var options = [
   "Juan",
   "Mauro",
@@ -255,7 +273,6 @@ function setAlarm(){
 
         alarmTime = `${selectMenu[0].value}:${selectMenu[1].value}:00 ${selectMenu[2].value}`;
         alarmListArr.push(alarmTime);
-        console.log(document.querySelector(".btn-delete").value);
     }
 
 }
@@ -275,3 +292,6 @@ function stopAlarm(){
     ring.pause();
     document.querySelector("#stopAlarm").style.visibility= "hidden";
 }
+
+
+

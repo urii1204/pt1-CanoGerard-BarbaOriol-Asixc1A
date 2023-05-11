@@ -6,18 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alarma</title>
 
-
-    <!-- External CSS File -->
+<link href='https://unpkg.com/css.gg@2.0.0/icons/css/sun.css' rel='stylesheet'>
+<link href='https://unpkg.com/css.gg@2.0.0/icons/css/moon.css' rel='stylesheet'>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="initClock()">
+<body id="body-tag" onload="initClock()">
+<div class="icon-class" onclick="changeColor()">
+<i class="gg-sun" id="sun" ></i>
+</div>
+
 
 
 <input type="button" value="Dale Click" style="float:left;" id='spin' class="btn btn-primary"/>
 <canvas id="canvas" width="500" height="500"></canvas>
 <audio id="sound-end" src="audio/008863841_prev.mp3"></audio>
 <audio id="sound-spinning" src="audio/006150824_prev.mp3"></audio>
-
     <div class="alarm">
         <div class="datetime">
             <div class="date">
